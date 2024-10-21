@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+
+
+
+
+
+
+
+// Defines the models and their relationships in the Postgres database
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Connection string to the Postgres database
+}
+
+// User model, representing the users in the app
+model User {
+  id        Int        @id @default(autoincrement()) // Primary key with auto-increment
+  username  String                                     // Username field (String)
+  playlists Playlist[]                                // One-to-many relationship with Playlist
+}
+
+// Playlist model, representing user-created playlists
+model Playlist {
+  id          Int    @id @default(autoincrement())    // Primary key with auto-increment
+  name        String                                 // Name of the playlist
+  description String                                 // Description of the playlist
+  ownerId     Int                                    // Foreign key linking to the User model
+  user        User   @relation(fields: [ownerId], references: [id]) // Defining the relation
+}

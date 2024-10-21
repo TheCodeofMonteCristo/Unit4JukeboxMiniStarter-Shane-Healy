@@ -1,14 +1,18 @@
 {
-  "name": "36-jukebox_mini",
+  "name": "jukebox-mini",
   "version": "1.0.0",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.js",    
+    "start": "node server.js"       
   },
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "dependencies": {
+    "express": "^4.17.1",          
+    "body-parser": "^1.19.0",       
+    "prisma": "^3.0.0",            
+    "@prisma/client": "^3.0.0"      
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"             
+  }
 }
